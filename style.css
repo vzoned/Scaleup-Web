@@ -2,10 +2,11 @@
 :root {
     --bg-white: #ffffff;
     
-    /* UPDATED BRAND COLORS */
-    --brand-blue: #028fff;    /* Your requested Blue */
-    --brand-cyan: #5ce1e6;    /* Your requested Cyan */
+    /* YOUR EXACT COLOR CODES */
+    --brand-blue: #028fff;    
+    --brand-cyan: #5ce1e6;    
     
+    /* Linear gradient for buttons */
     --brand-gradient: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
     
     --ink-black: #111111;
@@ -31,20 +32,32 @@ body {
 }
 
 /* --- MAC DOCK ANIMATION CLASS --- */
-/* This mimics the smooth magnification of the macOS Dock */
 .dock-anim {
     transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: inline-block;
 }
 
 .dock-anim:hover {
-    transform: scale(1.15) translateY(-5px); /* Scale up and float up */
+    transform: scale(1.15) translateY(-5px);
 }
 
-/* --- HELPER CLASSES --- */
-.logo, .loader-logo { color: var(--ink-black); }
-.text-blue { color: var(--brand-blue); }
-.text-cyan { color: var(--brand-cyan); }
+/* --- LOGO STYLING (RADIAL GRADIENT) --- */
+.logo, .loader-logo {
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    
+    /* RADIAL GRADIENT: Center Bottom (50% x, 100% y) */
+    /* Starts with Cyan at bottom, fading up to Blue */
+    background: radial-gradient(circle at 50% 100%, var(--brand-cyan) 0%, var(--brand-blue) 70%);
+    
+    /* Clip background to text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Make text transparent so background shows */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
 
 /* --- PRELOADER --- */
 .preloader {
@@ -61,9 +74,7 @@ body {
 }
 
 .loader-logo {
-    font-size: 3rem;
-    font-weight: 900;
-    letter-spacing: -1px;
+    font-size: 3.5rem; /* Slightly larger for loader */
     margin-bottom: 20px;
     opacity: 0;
     animation: fadeUp 0.8s ease-out forwards;
@@ -122,7 +133,6 @@ body {
     z-index: 950;
     padding: 30px 10px 30px 25px; 
     
-    /* Using Primary Blue */
     background: var(--brand-blue);
     color: white;
     
@@ -186,9 +196,7 @@ nav {
 }
 
 .logo {
-    font-weight: 900;
-    font-size: 1.8rem;
-    letter-spacing: -0.5px;
+    font-size: 1.8rem; /* Navbar logo size */
 }
 
 .nav-links {
@@ -275,6 +283,7 @@ h1 {
 }
 
 .gradient-text-main {
+    /* Main headline gradient remains linear for readability */
     background: var(--brand-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -432,7 +441,7 @@ h1 {
 }
 
 @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-/* --- Good --- */
+
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
     .hamburger { display: block; }
