@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScaleUp.Co | Creative Marketing</title>
+    <title>ScaleUp.Co | Creative Marketing Agency</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -13,56 +13,76 @@
 </head>
 <body>
 
+    <div class="preloader">
+        <div class="loader-logo">ScaleUp<span class="dot">.Co</span></div>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
     <div class="paper-overlay"></div>
 
-    <nav>
-        <div class="logo">ScaleUp<span class="dot">.</span>Co</div>
+    <div class="social-clip hidden-on-load">
+        <div class="social-text">FOLLOW US</div>
+        <div class="social-icons">
+            <a href="#" class="s-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="s-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="s-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="s-icon"><i class="fab fa-behance"></i></a>
+        </div>
+    </div>
+
+    <nav class="hidden-on-load">
+        <div class="logo">ScaleUp<span class="dot">.Co</span></div>
         
         <div class="hamburger" id="hamburger-btn">
             <i class="fas fa-bars"></i>
         </div>
 
         <div class="nav-links" id="nav-links">
-            <a href="#">Work</a>
-            <a href="#">Services</a>
-            <a href="#">About</a>
-            <a href="#" class="btn-nav">Let's Talk</a>
+            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact" class="btn-nav">Let's Talk</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-container">
             
-            <div class="hero-text">
+            <div class="hero-text hidden-on-load">
                 <p class="tagline">CREATIVITY • CONSISTENCY • CONVERSIONS</p>
                 <h1>
-                    JUMP INTO THE<br>
-                    <span class="outline-text">FUTURE OF</span><br>
-                    <span class="highlight-text">MARKETING</span>
+                    <div class="line-mask"><span>JUMP INTO THE</span></div>
+                    <div class="line-mask"><span class="outline-text">FUTURE OF</span></div>
+                    <div class="line-mask"><span class="highlight-text">MARKETING</span></div>
                 </h1>
                 
                 <p class="description">
-                    We don't just design. We scale brands. <br>
-                    Clean aesthetics. Dynamic strategies. Real results.
+                    We create dynamic strategies for modern brands. <br>
+                    Clean aesthetics. Real results. All in one place.
                 </p>
 
                 <div class="cta-wrapper">
                     <button class="btn-primary">Start Scaling</button>
-                    <a href="#" class="link-secondary">View Our Work <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="link-secondary">
+                        <span class="circle-icon"><i class="fas fa-play"></i></span>
+                        Watch Reel
+                    </a>
                 </div>
             </div>
 
-            <div class="hero-visual" id="poster-art">
+            <div class="hero-visual hidden-on-load" id="poster-art">
                 
                 <div class="poster-shape"></div>
 
                 <div class="image-wrapper">
                     <div class="halftone-pattern"></div>
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop" alt="Creative Director">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1376&auto=format&fit=crop" alt="Creative Director">
                 </div>
 
                 <div class="floating-sticker">
-                    <span>ALL IN</span><br>ONE
+                    <span>10X</span><br>ROI
                 </div>
                 
                 <div class="tape-strip"></div>
@@ -71,18 +91,12 @@
         </div>
     </section>
 
-    <div class="brand-stripe">
-        <span>SCALEUP.CO</span>
-        <span>•</span>
-        <span>DIGITAL</span>
-        <span>•</span>
-        <span>CREATIVE</span>
-        <span>•</span>
-        <span>SCALEUP.CO</span>
-        <span>•</span>
-        <span>DIGITAL</span>
-        <span>•</span>
-        <span>CREATIVE</span>
+    <div class="marquee-strip hidden-on-load">
+        <div class="marquee-content">
+            <span>SCALEUP.CO</span> • <span>DIGITAL</span> • <span>CREATIVE</span> • 
+            <span>SCALEUP.CO</span> • <span>DIGITAL</span> • <span>CREATIVE</span> •
+            <span>SCALEUP.CO</span> • <span>DIGITAL</span> • <span>CREATIVE</span> •
+        </div>
     </div>
 
     <script src="script.js"></script>
