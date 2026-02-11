@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- MOBILE MENU ---
+    // --- 1. MOBILE MENU ---
     const hamburger = document.getElementById('hamburger-btn');
     const navLinks = document.getElementById('nav-links');
     const icon = hamburger.querySelector('i');
@@ -16,25 +16,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- MOUSE TILT EFFECT ---
-    const poster = document.getElementById('poster-art');
+    // --- 2. 3D TILT EFFECT (Clean Version) ---
     const heroSection = document.querySelector('.hero');
+    const posterCard = document.querySelector('.poster-card');
+    const badge = document.querySelector('.floating-badge');
 
-    if (window.innerWidth > 768) {
+    // Only run on desktop/larger screens
+    if (window.innerWidth > 900) {
         heroSection.addEventListener('mousemove', (e) => {
-            // Calculate mouse position relative to center
-            const x = (window.innerWidth - e.pageX * 2) / 60;
-            const y = (window.innerHeight - e.pageY * 2) / 60;
+            // Get values relative to center of screen
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
 
-            // Move main poster container
-            poster.style.transform = `translate(${x}px, ${y}px)`;
+            // Tilt the main card slightly
+            posterCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
             
-            // Move inner elements in opposite directions for depth
-            const cutout = poster.querySelector('.cutout-bg');
-            const sticker = poster.querySelector('.sticker');
-            
-            if(cutout) cutout.style.transform = `rotate(2deg) translate(${-x * 1.5}px, ${-y * 1.5}px)`;
-            if(sticker) sticker.style.transform = `rotate(15deg) translate(${x * 1.2}px, ${y * 1.2}px)`;
+            // Move the badge more (Parallax effect)
+            if(badge) {
+                badge.style.transform = `translate(${x * 1.5}px, ${y * 1.5}px)`;
+            }
+        });
+
+        // Reset on mouse leave
+        heroSection.addEventListener('mouseleave', () => {
+            posterCard.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            if(badge) badge.style.transform = `translate(0, 0)`;
         });
     }
 });
