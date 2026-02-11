@@ -432,7 +432,7 @@ h1 {
 }
 
 @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
+/* --- Good --- */
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
     .hamburger { display: block; }
