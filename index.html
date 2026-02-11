@@ -3,333 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scaleup.co | The Future of Marketing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Scaleup.co | Creative Agency</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100;300;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,900;1,6..96,400&family=Six+Caps&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* --- VARIABLES --- */
-        :root {
-            /* Palette */
-            --paper-bg: #f4f7f6;
-            --ink-blue: #002347;       /* Dark Blue Text */
-            --cyan-accent: #00e5ff;    /* Cyan Accents */
-            --highlight-yellow: #fff200; /* The "Poster" Highlight */
-            
-            /* Textures */
-            --halftone-size: 5px;
-            --paper-texture: url('https://www.transparenttextures.com/patterns/crinkled-paper.png');
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--paper-bg);
-            background-image: var(--paper-texture); /* Global Paper Texture */
-            color: var(--ink-blue);
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* --- GLOBAL TEXTURE OVERLAY --- */
-        /* This adds the "worn poster" look on top of everything */
-        .poster-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: var(--paper-texture);
-            opacity: 0.6;
-            mix-blend-mode: multiply;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* --- NAVBAR --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            position: relative;
-            z-index: 100;
-        }
-
-        .logo {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            color: var(--ink-blue);
-        }
-
-        .logo span {
-            color: var(--cyan-accent);
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--ink-blue);
-            font-weight: 700;
-            margin-left: 30px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 3px;
-            background: var(--highlight-yellow);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            max-width: 1200px;
-            width: 100%;
-            align-items: center;
-        }
-
-        /* --- LEFT SIDE: TYPOGRAPHY --- */
-        .hero-text {
-            position: relative;
-            z-index: 2;
-        }
-
-        h1 {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            color: var(--ink-blue);
-        }
-
-        h1 .highlight {
-            background: var(--highlight-yellow);
-            padding: 0 10px;
-            display: inline-block;
-            transform: rotate(-2deg); /* Slight tilt like a sticker */
-        }
-
-        h1 .outline {
-            -webkit-text-stroke: 2px var(--ink-blue);
-            color: transparent;
-        }
-
-        .sub-headline {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .sub-headline span {
-            position: relative;
-        }
-        
-        .sub-headline span::before {
-            content: '•';
-            color: var(--cyan-accent);
-            margin-right: 10px;
-        }
-
-        .cta-box {
-            border: 3px solid var(--ink-blue);
-            padding: 10px;
-            display: inline-block;
-            background: white;
-            box-shadow: 10px 10px 0px var(--cyan-accent); /* Hard shadow */
-        }
-
-        .btn {
-            background: var(--ink-blue);
-            color: white;
-            padding: 15px 40px;
-            font-weight: 700;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            background: var(--cyan-accent);
-            color: var(--ink-blue);
-        }
-
-        /* --- RIGHT SIDE: POSTER IMAGE COMPOSITION --- */
-        .hero-visual {
-            position: relative;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* 1. The Yellow "Paper Cutout" Background Shape */
-        .cutout-bg {
-            position: absolute;
-            width: 90%;
-            height: 90%;
-            background-color: var(--highlight-yellow);
-            /* Creating a jagged, polygon shape like the reference */
-            clip-path: polygon(
-                10% 0, 100% 15%, 85% 100%, 0% 85%, 
-                5% 50%, 0 20%
-            );
-            z-index: 1;
-            transform: rotate(3deg);
-        }
-
-        /* 2. The Image Container */
-        .image-container {
-            position: relative;
-            width: 80%;
-            height: 100%;
-            z-index: 2;
-            /* Filter to make the photo blue-tinted & gritty */
-            filter: contrast(120%) grayscale(100%);
-            mix-blend-mode: multiply; /* Blends into the yellow bg */
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Masking the image to feel like a rough cutout */
-            clip-path: polygon(10% 0, 95% 5%, 100% 90%, 5% 100%);
-        }
-
-        /* 3. The Halftone Overlay (The Dots) */
-        .halftone-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 3;
-            /* Creating the dots with CSS Gradients */
-            background-image: radial-gradient(var(--cyan-accent) 20%, transparent 20%);
-            background-size: 8px 8px; /* Dot size */
-            mix-blend-mode: color-burn; /* Blends dots into image */
-            opacity: 0.6;
-            clip-path: polygon(10% 0, 95% 5%, 100% 90%, 5% 100%); /* Match image shape */
-        }
-
-        /* Decorative Elements */
-        .tape {
-            position: absolute;
-            width: 120px;
-            height: 40px;
-            background: rgba(255,255,255,0.8);
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transform: rotate(-25deg);
-            top: -10px;
-            left: 20px;
-        }
-
-        .sticker {
-            position: absolute;
-            bottom: 50px;
-            right: -20px;
-            background: var(--ink-blue);
-            color: white;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 0.8rem;
-            font-weight: 700;
-            transform: rotate(15deg);
-            z-index: 20;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 30px;
-            }
-
-            h1 {
-                font-size: 3rem;
-            }
-
-            .sub-headline {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .hero-visual {
-                height: 400px;
-                width: 100%;
-                order: -1; /* Move image to top on mobile */
-            }
-
-            .cutout-bg {
-                width: 100%;
-                clip-path: polygon(0 0, 100% 10%, 90% 100%, 10% 90%);
-            }
-            
-            nav {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            
-            .nav-links a {
-                margin: 0;
-            }
-        }
-    </style>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="poster-overlay"></div>
+    <div class="noise-overlay"></div>
+    <div class="paper-tint"></div>
 
     <nav>
-        <div class="logo">Scaleup<span>.co</span></div>
-        <div class="nav-links">
+        <div class="logo">Scaleup<span class="dot">.</span>co</div>
+        
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="nav-links">
             <a href="#">Work</a>
             <a href="#">Services</a>
             <a href="#">About</a>
@@ -342,15 +36,18 @@
             
             <div class="hero-text">
                 <h1>
-                    Jump Into <br>
-                    The <span class="highlight">Future</span> <br>
-                    Of <span class="outline">Marketing</span>
+                    <span class="font-tall">JUMP</span> 
+                    <span class="font-serif-italic">into the</span> <br>
+                    
+                    <span class="font-serif-bold highlight">FUTURE</span> <br>
+                    
+                    <span class="font-thin">OF MARKETING</span>
                 </h1>
                 
                 <div class="sub-headline">
-                    <span>Creativity</span>
-                    <span>Consistency</span>
-                    <span>Conversions</span>
+                    <span class="font-serif">Creativity</span>
+                    <span class="font-tall">CONSISTENCY</span>
+                    <span class="font-serif">Conversions</span>
                 </div>
 
                 <div class="cta-box">
@@ -358,23 +55,25 @@
                 </div>
             </div>
 
-            <div class="hero-visual">
+            <div class="hero-visual" id="poster-art">
                 <div class="tape"></div>
+                <div class="sticker">
+                    <span class="font-tall">ALL</span><br>
+                    <span class="font-serif-italic">in one</span><br>
+                    <span class="font-tall">PLACE</span>
+                </div>
                 
                 <div class="cutout-bg"></div>
 
                 <div class="image-container">
                     <div class="halftone-overlay"></div>
-                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1374&auto=format&fit=crop" alt="Creative Agency Team Member">
-                </div>
-
-                <div class="sticker">
-                    ALL IN<br>ONE<br>PLACE
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1374&auto=format&fit=crop" alt="Agency Team">
                 </div>
             </div>
 
         </div>
     </section>
 
+    <script src="script.js"></script>
 </body>
 </html>
