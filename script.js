@@ -49,13 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = (window.innerHeight - e.pageY * 2) / 100;
 
             // Apply different speeds for depth perception
-            // Shape moves slow (Background)
             shape.style.transform = `rotate(-3deg) translate(${x * 0.5}px, ${y * 0.5}px)`;
-            
-            // Image moves medium (Midground)
             image.style.transform = `translate(${-x}px, ${-y}px)`;
-            
-            // Sticker moves fast (Foreground)
             sticker.style.transform = `rotate(-10deg) translate(${x * 2}px, ${y * 2}px)`;
         });
     }
