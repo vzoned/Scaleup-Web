@@ -1,0 +1,333 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-color: #f0f2f5;
+    --ink-blue: #002347;       
+    --cyan-accent: #00e5ff;    
+    --highlight-yellow: #fff200; 
+    
+    /* FONTS */
+    --font-logo: 'Avenir', 'Nunito', sans-serif; /* Avenir with fallback */
+    --font-tall: 'Six Caps', sans-serif;         /* Very tall & condensed */
+    --font-serif: 'Bodoni Moda', serif;          /* High-contrast fashion serif */
+    --font-thin: 'Antonio', sans-serif;          /* Thin modern sans */
+}
+
+/* --- RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--ink-blue);
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* --- THE PAPER TEXTURE (CSS ONLY - NO IMAGES) --- */
+/* 1. The Grain/Noise */
+.noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.15;
+    /* This generates static noise using CSS gradients */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* 2. The Uneven Paper Lighting (Vignette) */
+.paper-tint {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    /* Creates a subtle shadow around edges like old paper */
+    background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.1) 100%);
+    mix-blend-mode: multiply;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    font-family: var(--font-logo);
+    font-weight: 900; /* Avenir Heavy */
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: var(--ink-blue);
+    z-index: 101;
+}
+
+.logo .dot {
+    color: var(--cyan-accent);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--ink-blue);
+    font-family: var(--font-thin);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-left: 40px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--cyan-accent);
+    text-decoration: line-through; /* Edgy style */
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 101;
+}
+
+/* --- TYPOGRAPHY STYLES (THE "MIXUP") --- */
+.font-tall {
+    font-family: var(--font-tall);
+    font-weight: 400;
+    font-size: 1.2em; /* Slightly larger relative to line */
+    letter-spacing: 2px;
+}
+
+.font-serif {
+    font-family: var(--font-serif);
+    font-style: normal;
+}
+
+.font-serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-size: 0.5em; /* Smaller contrast text */
+    vertical-align: middle;
+}
+
+.font-serif-bold {
+    font-family: var(--font-serif);
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.font-thin {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    letter-spacing: 4px;
+    font-size: 0.6em;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+}
+
+/* Typography Layout */
+.hero-text h1 {
+    line-height: 0.8;
+    margin-bottom: 30px;
+    color: var(--ink-blue);
+    font-size: clamp(3.5rem, 8vw, 6.5rem); /* Responsive giant text */
+}
+
+h1 .highlight {
+    background: linear-gradient(100deg, transparent 0%, var(--highlight-yellow) 0%, var(--highlight-yellow) 100%, transparent 100%);
+    padding: 0 5px;
+    color: var(--ink-blue);
+    display: inline-block;
+    transform: skewX(-10deg);
+}
+
+.sub-headline {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-top: 2px solid var(--ink-blue);
+    border-bottom: 2px solid var(--ink-blue);
+    padding: 10px 0;
+    width: fit-content;
+}
+
+/* Buttons */
+.cta-box {
+    position: relative;
+    display: inline-block;
+}
+
+.cta-box::after {
+    content: '';
+    position: absolute;
+    top: 5px; left: 5px;
+    width: 100%; height: 100%;
+    border: 2px solid var(--ink-blue);
+    z-index: -1;
+}
+
+.btn {
+    background: var(--ink-blue);
+    color: white;
+    font-family: var(--font-logo); /* Avenir style */
+    padding: 15px 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid var(--ink-blue);
+    cursor: pointer;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translate(3px, 3px);
+    background: var(--cyan-accent);
+    color: var(--ink-blue);
+}
+
+/* --- VISUAL COMPOSITION --- */
+.hero-visual {
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Yellow Background Shape */
+.cutout-bg {
+    position: absolute;
+    width: 85%;
+    height: 95%;
+    background-color: var(--highlight-yellow);
+    /* Jagged torn paper edges */
+    clip-path: polygon(2% 0%, 95% 5%, 100% 90%, 85% 100%, 5% 95%, 0% 10%);
+    z-index: 1;
+    transform: rotate(2deg);
+}
+
+/* Image Container */
+.image-container {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    z-index: 2;
+    filter: contrast(110%) grayscale(100%) sepia(20%) hue-rotate(180deg) saturate(200%); /* Blueish tint */
+    mix-blend-mode: multiply;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: polygon(5% 0%, 100% 5%, 95% 100%, 0% 90%);
+}
+
+/* Halftone */
+.halftone-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 3;
+    /* Blue Dots */
+    background-image: radial-gradient(var(--cyan-accent) 25%, transparent 25%);
+    background-size: 6px 6px;
+    mix-blend-mode: hard-light;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Sticker */
+.sticker {
+    position: absolute;
+    bottom: 60px;
+    right: -30px;
+    background: var(--ink-blue);
+    color: white;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(15deg);
+    z-index: 20;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+    border: 2px solid white;
+}
+
+.tape {
+    position: absolute;
+    width: 140px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 10;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transform: rotate(-25deg);
+    top: -20px;
+    left: 10px;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    
+    .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 80%; height: 100vh;
+        background: var(--bg-color);
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.4s;
+        border-left: 2px solid var(--ink-blue);
+    }
+    
+    .nav-links.active { right: 0; }
+    
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .sub-headline { margin: 20px auto; }
+    
+    .hero-visual {
+        height: 400px;
+        order: -1;
+    }
+}
