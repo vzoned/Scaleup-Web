@@ -16,31 +16,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 2. 3D TILT EFFECT (Clean Version) ---
+    // --- 2. PREMIUM 3D TILT EFFECT ---
     const heroSection = document.querySelector('.hero');
-    const posterCard = document.querySelector('.poster-card');
-    const badge = document.querySelector('.floating-badge');
+    const posterVisual = document.getElementById('poster-art');
+    const shape = document.querySelector('.poster-shape');
+    const image = document.querySelector('.image-wrapper');
+    const sticker = document.querySelector('.floating-sticker');
 
-    // Only run on desktop/larger screens
     if (window.innerWidth > 900) {
         heroSection.addEventListener('mousemove', (e) => {
-            // Get values relative to center of screen
+            // Calculate mouse position relative to center
             const x = (window.innerWidth - e.pageX * 2) / 100;
             const y = (window.innerHeight - e.pageY * 2) / 100;
 
-            // Tilt the main card slightly
-            posterCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            // Move elements at different speeds for Parallax Depth
+            // 1. Shape moves slowly (Background)
+            shape.style.transform = `rotate(-3deg) translate(${x}px, ${y}px)`;
             
-            // Move the badge more (Parallax effect)
-            if(badge) {
-                badge.style.transform = `translate(${x * 1.5}px, ${y * 1.5}px)`;
-            }
-        });
-
-        // Reset on mouse leave
-        heroSection.addEventListener('mouseleave', () => {
-            posterCard.style.transform = `rotateY(0deg) rotateX(0deg)`;
-            if(badge) badge.style.transform = `translate(0, 0)`;
+            // 2. Image moves moderately (Midground)
+            image.style.transform = `translate(${-x * 1.5}px, ${-y * 1.5}px)`;
+            
+            // 3. Sticker moves fast (Foreground)
+            sticker.style.transform = `rotate(-10deg) translate(${x * 2.5}px, ${y * 2.5}px)`;
         });
     }
 });
