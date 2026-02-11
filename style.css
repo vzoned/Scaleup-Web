@@ -2,15 +2,17 @@
 :root {
     --bg-white: #ffffff;
     
-    /* VIBRANT BRAND COLORS (Extracted from your Logo) */
-    --brand-cyan: #00E5FF;    /* The "Scale" and ".Co" Color */
-    --brand-blue: #0061FF;    /* The "Up" Color */
-    --brand-gradient: linear-gradient(135deg, var(--brand-cyan), var(--brand-blue));
+    /* UPDATED BRAND COLORS */
+    --brand-blue: #028fff;    /* Your requested Blue */
+    --brand-cyan: #5ce1e6;    /* Your requested Cyan */
+    
+    --brand-gradient: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
     
     --ink-black: #111111;
     --grey-text: #666666;
     
-    --font-main: 'Nunito Sans', sans-serif;
+    /* FONT STACK: Prioritize Avenir */
+    --font-main: 'Avenir', 'Nunito Sans', sans-serif;
 }
 
 /* --- RESET & GLOBAL --- */
@@ -28,17 +30,21 @@ body {
     width: 100%;
 }
 
-/* --- HELPER CLASSES FOR LOGO --- */
-/* Matches your "ScaleUp.Co" image logic */
-.logo, .loader-logo {
-    color: var(--brand-cyan); /* Default "Scale" */
+/* --- MAC DOCK ANIMATION CLASS --- */
+/* This mimics the smooth magnification of the macOS Dock */
+.dock-anim {
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
 }
-.text-blue {
-    color: var(--brand-blue); /* "Up" */
+
+.dock-anim:hover {
+    transform: scale(1.15) translateY(-5px); /* Scale up and float up */
 }
-.text-cyan {
-    color: var(--brand-cyan); /* ".Co" */
-}
+
+/* --- HELPER CLASSES --- */
+.logo, .loader-logo { color: var(--ink-black); }
+.text-blue { color: var(--brand-blue); }
+.text-cyan { color: var(--brand-cyan); }
 
 /* --- PRELOADER --- */
 .preloader {
@@ -80,22 +86,11 @@ body {
     animation: loadBar 1.5s ease-in-out forwards;
 }
 
-@keyframes loadBar {
-    0% { width: 0%; }
-    100% { width: 100%; }
-}
+@keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.preloader.fade-out { opacity: 0; visibility: hidden; }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.preloader.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* --- CRUMPLED PAPER TEXTURE --- */
+/* --- TEXTURE --- */
 .paper-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -106,17 +101,13 @@ body {
     mix-blend-mode: multiply;
 }
 
-/* --- REVEAL ANIMATIONS --- */
+/* --- REVEAL --- */
 .hidden-on-load {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 1s ease, transform 1s ease;
 }
-
-.reveal {
-    opacity: 1;
-    transform: translateY(0);
-}
+.reveal { opacity: 1; transform: translateY(0); }
 
 /* --- CREATIVE SOCIAL CLIP --- */
 .social-clip {
@@ -131,19 +122,18 @@ body {
     z-index: 950;
     padding: 30px 10px 30px 25px; 
     
-    /* VIBRANT BLUE BACKGROUND */
+    /* Using Primary Blue */
     background: var(--brand-blue);
     color: white;
     
-    /* CUSTOM SHAPE: Jagged Left Edge */
     clip-path: polygon(
         20% 0%, 100% 0, 100% 100%, 20% 100%, 
         0% 90%, 15% 80%, 0% 70%, 15% 60%, 
         0% 50%, 15% 40%, 0% 30%, 15% 20%, 0% 10%
     );
     
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: -5px 5px 20px rgba(0, 97, 255, 0.3);
+    transition: transform 0.3s ease;
+    box-shadow: -5px 5px 20px rgba(2, 143, 255, 0.3);
 }
 
 .social-clip:hover {
@@ -171,7 +161,6 @@ body {
 .s-icon {
     color: white;
     font-size: 1.1rem;
-    transition: 0.2s;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -179,12 +168,6 @@ body {
     height: 35px;
     background: rgba(255,255,255,0.2);
     border-radius: 50%;
-}
-
-.s-icon:hover {
-    background: white;
-    color: var(--brand-blue);
-    transform: scale(1.1);
 }
 
 /* --- NAVIGATION --- */
@@ -219,12 +202,9 @@ nav {
     color: var(--ink-black);
     font-weight: 700;
     font-size: 0.95rem;
-    transition: 0.3s;
 }
 
-.nav-links a:hover {
-    color: var(--brand-cyan);
-}
+.nav-links a:hover { color: var(--brand-blue); }
 
 .btn-nav {
     border: 2px solid var(--brand-blue);
@@ -267,11 +247,7 @@ nav {
     align-items: center;
 }
 
-/* --- TYPOGRAPHY --- */
-.hero-text {
-    z-index: 10;
-    transition-delay: 0.4s;
-}
+.hero-text { z-index: 10; transition-delay: 0.4s; }
 
 .tagline {
     font-size: 0.85rem;
@@ -290,20 +266,14 @@ h1 {
     color: var(--ink-black);
 }
 
-.line-mask {
-    overflow: hidden;
-}
-.line-mask span {
-    display: block;
-}
+.line-mask { overflow: hidden; }
+.line-mask span { display: block; }
 
 .outline-text {
     -webkit-text-stroke: 2px var(--ink-black);
     color: transparent;
-    transition: 0.3s;
 }
 
-/* New Gradient Text for Headline */
 .gradient-text-main {
     background: var(--brand-gradient);
     -webkit-background-clip: text;
@@ -319,7 +289,6 @@ h1 {
     font-weight: 500;
 }
 
-/* Buttons */
 .cta-wrapper {
     display: flex;
     align-items: center;
@@ -336,14 +305,8 @@ h1 {
     font-size: 1rem;
     letter-spacing: 0.5px;
     cursor: pointer;
-    transition: 0.3s;
     border-radius: 4px;
-    box-shadow: 0 10px 25px rgba(0, 229, 255, 0.3);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(0, 97, 255, 0.4);
+    box-shadow: 0 10px 25px rgba(2, 143, 255, 0.3);
 }
 
 .link-secondary {
@@ -361,14 +324,7 @@ h1 {
     background: #f4f4f4;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    transition: 0.3s;
-    font-size: 0.8rem;
     color: var(--brand-blue);
-}
-
-.link-secondary:hover .circle-icon {
-    background: var(--brand-cyan);
-    color: white;
 }
 
 /* --- VISUAL COMPOSITION --- */
@@ -381,18 +337,16 @@ h1 {
     transition-delay: 0.6s;
 }
 
-/* 1. VIBRANT CYAN SHAPE */
 .poster-shape {
     position: absolute;
     width: 80%;
     height: 90%;
-    background-color: var(--brand-cyan); /* VIBRANT CYAN */
+    background-color: var(--brand-cyan); /* EXACT CYAN */
     clip-path: polygon(10% 0, 100% 15%, 85% 100%, 0% 85%, 5% 45%);
     transform: rotate(-3deg);
     z-index: 1;
 }
 
-/* 2. Image Wrapper */
 .image-wrapper {
     position: relative;
     width: 70%;
@@ -420,12 +374,11 @@ h1 {
     clip-path: polygon(0 0, 100% 5%, 95% 100%, 5% 95%);
 }
 
-/* 3. Sticker */
 .floating-sticker {
     position: absolute;
     bottom: 60px;
     left: 20px;
-    background: var(--brand-blue); /* VIBRANT BLUE */
+    background: var(--brand-blue); /* EXACT BLUE */
     color: white;
     width: 90px;
     height: 90px;
@@ -440,7 +393,7 @@ h1 {
     z-index: 10;
     transform: rotate(-10deg);
     border: 2px solid white;
-    box-shadow: 0 5px 15px rgba(0, 97, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(2, 143, 255, 0.4);
 }
 
 .tape-strip {
@@ -478,17 +431,12 @@ h1 {
     animation: scroll 20s linear infinite;
 }
 
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
     .hamburger { display: block; }
-    
     .social-clip { display: none; }
-
     .nav-links {
         position: fixed;
         top: 0; right: -100%;
@@ -499,14 +447,12 @@ h1 {
         transition: 0.4s;
     }
     .nav-links.active { right: 0; }
-
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 40px;
         padding-bottom: 80px;
     }
-
     .hero-text { order: 2; }
     .hero-visual { order: 1; height: 400px; margin-top: 20px; }
     .cta-wrapper { justify-content: center; }
